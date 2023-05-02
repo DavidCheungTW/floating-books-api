@@ -7,8 +7,11 @@
   "description": "Floating Books API",
   "main": "index.js",
   "scripts": {
+    "prestart": "node scripts/create-database.js",
     "start": "nodemon -r dotenv/config index.js",
-    "test": "jest"
+    "pretest": "node scripts/create-database.js test",
+    "test": "mocha tests/**/*.js --exit --recursive --timeout 60000 --file ./scripts/test-setup.js",
+    "posttest": "node scripts/drop-database.js test"
   },
   "repository": {
     "type": "git",
@@ -28,10 +31,6 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
-    "eslint": "^8.39.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.27.4",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "supertest": "^6.3.3"

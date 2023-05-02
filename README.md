@@ -15,6 +15,20 @@ Floating Books API
 
 ### API setup
 
+- pre-requirement:
+
+  [docker desktop](https://docs.docker.com/desktop/install/mac-install/)
+
+  [postman](https://www.postman.com/downloads/)
+
+  [pgAdmin](https://www.pgadmin.org/download/)
+
+- Start docker container:
+
+```
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres
+```
+
 - Clone backend repo:
 
 ```
@@ -56,6 +70,25 @@ npm start
 ```
 {
     "result": "Welcome to Floating Books API!"
+}
+```
+
+- Post request http://localhost:3000/genres with req body
+
+```
+{
+ "genre": "genre001"
+}
+```
+
+Response 201 and
+
+```
+{
+    "id": 1,
+    "genre": "genre001",
+    "updatedAt": "2023-05-02T16:20:23.114Z",
+    "createdAt": "2023-05-02T16:20:23.114Z"
 }
 ```
 
