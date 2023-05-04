@@ -1,5 +1,23 @@
 const express = require('express');
 const app = express();
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const path = require('path');
+
+// ------ Configure swagger docs ------
+const options = {
+  swaggerDefinition: {
+    info: {
+      title: 'Floating Books API',
+      version: '1.0.0',
+      description: 'Backend API for Floating Books app',
+    },
+  },
+  apis: [path.join(__dirname, '/routes/*.js')],
+};
+const swaggerSpecs = swaggerJsdoc(options);
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 app.use(express.json());
 
