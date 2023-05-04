@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     firstName: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
@@ -18,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
@@ -30,19 +28,21 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    userName: DataTypes.STRING,
-    email: {
+    userName: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'user name must be unique',
+      },
       validate: {
         notNull: {
           args: [true],
-          msg: 'email must be existed',
+          msg: 'user name must be existed',
         },
         notEmpty: {
           args: [true],
-          msg: 'email must not be empty',
+          msg: 'user name must not be empty',
         },
       },
     },

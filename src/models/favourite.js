@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     createDate: {
       allowNull: false,
       type: DataTypes.DATEONLY,
-      unique: true,
       validate: {
         notNull: {
           args: [true],

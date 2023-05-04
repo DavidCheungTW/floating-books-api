@@ -8,8 +8,23 @@ exports.createItem = async (model, req, res) => {
 };
 
 exports.getAllItem = async (model, req, res) => {
+  let rows;
   try {
-    const rows = await model.findAll();
+    switch (model.name) {
+      case 'Book':
+        rows = await model.findAll({
+          include: ['genre', 'donator', 'owner'],
+        });
+        break;
+      case 'Favourite':
+      case 'Order':
+        rows = await model.findAll({
+          include: ['user', 'book'],
+        });
+        break;
+      default:
+        rows = await model.findAll();
+    }
     res.status(200).json(rows);
   } catch (err) {
     res.status(400).json(err);
@@ -17,8 +32,26 @@ exports.getAllItem = async (model, req, res) => {
 };
 
 exports.searchItem = async (model, req, res) => {
+  let rows;
   try {
-    const rows = await model.findAll({ where: req.body });
+    switch (model.name) {
+      case 'Book':
+        rows = await model.findAll({
+          where: req.body,
+          include: ['genre', 'donator', 'owner'],
+        });
+        break;
+      case 'Favourite':
+      case 'Order':
+        rows = await model.findAll({
+          where: req.body,
+          include: ['user', 'book'],
+        });
+        break;
+      default:
+        rows = await model.findAll({ where: req.body });
+    }
+
     res.status(200).json(rows);
   } catch (err) {
     res.status(400).json(err);
@@ -26,8 +59,23 @@ exports.searchItem = async (model, req, res) => {
 };
 
 exports.getItem = async (model, req, res) => {
+  let row;
   try {
-    const row = await model.findByPk(req.params.id);
+    switch (model.name) {
+      case 'Book':
+        row = await model.findByPk(req.params.id, {
+          include: ['genre', 'donator', 'owner'],
+        });
+        break;
+      case 'Favourite':
+      case 'Order':
+        row = await model.findByPk(req.params.id, {
+          include: ['user', 'book'],
+        });
+        break;
+      default:
+        row = await model.findByPk(req.params.id);
+    }
     if (row == null) {
       return res
         .status(404)

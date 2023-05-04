@@ -3,7 +3,7 @@ const GenreModel = require('./genre');
 const UserModel = require('./user');
 const BookModel = require('./book');
 const FavouriteModel = require('./favourite');
-const RequestModel = require('./request');
+const OrderModel = require('./order');
 
 const { PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT } = process.env;
 
@@ -19,7 +19,7 @@ const setupDatabase = () => {
   const User = UserModel(connection, Sequelize);
   const Book = BookModel(connection, Sequelize);
   const Favourite = FavouriteModel(connection, Sequelize);
-  const Request = RequestModel(connection, Sequelize);
+  const Order = OrderModel(connection, Sequelize);
 
   Book.belongsTo(Genre, {
     as: 'genre',
@@ -33,12 +33,23 @@ const setupDatabase = () => {
   });
 
   Book.belongsTo(User, {
-    as: 'user',
+    as: 'donator',
     foreignKey: {
       allowNull: false,
       validate: {
         notNull: { msg: 'Book must have Donator' },
         notEmpty: { msg: 'Book must have Donator' },
+      },
+    },
+  });
+
+  Book.belongsTo(User, {
+    as: 'owner',
+    foreignKey: {
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'Book must have Owner' },
+        notEmpty: { msg: 'Book must have Owner' },
       },
     },
   });
@@ -65,30 +76,30 @@ const setupDatabase = () => {
     },
   });
 
-  Request.belongsTo(User, {
+  Order.belongsTo(User, {
     as: 'user',
     foreignKey: {
       allowNull: false,
       validate: {
-        notNull: { msg: 'Request must have User' },
-        notEmpty: { msg: 'Request must have User' },
+        notNull: { msg: 'Order must have User' },
+        notEmpty: { msg: 'Order must have User' },
       },
     },
   });
 
-  Request.belongsTo(Book, {
+  Order.belongsTo(Book, {
     as: 'book',
     foreignKey: {
       allowNull: false,
       validate: {
-        notNull: { msg: 'Request must have Book' },
-        notEmpty: { msg: 'Request must have Book' },
+        notNull: { msg: 'Order must have Book' },
+        notEmpty: { msg: 'Order must have Book' },
       },
     },
   });
 
   connection.sync({ alter: true });
-  return { Genre, User, Book, Favourite, Request };
+  return { Genre, User, Book, Favourite, Order };
 };
 
 module.exports = setupDatabase();

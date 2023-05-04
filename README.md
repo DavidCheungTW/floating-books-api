@@ -6,8 +6,7 @@ Floating Books API
 
 ### RESTful web API design
 
-| Resource | POST | GET | PATCH | DELETE |
-| -------- | ---- | --- | ----- | ------ |
+link to swagger >>>
 
 ## Project setup
 
@@ -22,6 +21,8 @@ Floating Books API
   [postman](https://www.postman.com/downloads/)
 
   [pgAdmin](https://www.pgadmin.org/download/)
+
+  [frontend floating-books app](https://github.com/SomiaHussain/floating-books.git)
 
 - Start docker container:
 

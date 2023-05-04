@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
@@ -18,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     ISBN: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
@@ -33,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     author: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
@@ -48,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
     releaseDate: {
       allowNull: false,
       type: DataTypes.DATEONLY,
-      unique: true,
       validate: {
         notNull: {
           args: [true],
