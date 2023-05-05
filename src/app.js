@@ -37,11 +37,13 @@ const userRouter = require('../src/routes/user');
 const bookRouter = require('../src/routes/book');
 const favouriteRouter = require('../src/routes/favourite');
 const orderRouter = require('../src/routes/order');
+const emailRouter = require('../src/routes/email');
 
 app.use(genreRouter);
 app.use(userRouter);
 app.use(bookRouter);
 app.use(favouriteRouter);
 app.use(orderRouter);
+app.use(emailRouter);
 
 module.exports = app;
