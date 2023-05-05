@@ -4,6 +4,13 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const path = require('path');
 
+// ------ Configure firebase admin ------
+const admin = require('firebase-admin');
+const serviceAccount = require('../cert.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
 // ------ Configure swagger docs ------
 const options = {
   swaggerDefinition: {

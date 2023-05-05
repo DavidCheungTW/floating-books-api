@@ -1,4 +1,5 @@
 const express = require('express');
+const authorize = require('../middleware/authorize');
 const router = express.Router();
 const {
   createFavourite,
