@@ -1,5 +1,16 @@
+const uploadFile = require('../utils/upload-file');
+
 exports.createItem = async (model, req, res) => {
   try {
+    if (model.name === 'Book') {
+      const { file } = req;
+      if (file) {
+        const cover_image = await uploadFile(file);
+        req.body.image = cover_image;
+      } else {
+        req.body.image = '';
+      }
+    }
     const row = await model.create(req.body);
     return res.status(201).json(row);
   } catch (err) {

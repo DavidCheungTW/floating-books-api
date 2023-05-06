@@ -92,6 +92,11 @@ npm start
 - [Sequelize with Express](https://www.codementor.io/@mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz)
 - [Sequelize - Pre-attribute validations](https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/)
 - [associations in the Sequelize](https://sequelize.org/docs/v6/core-concepts/assocs/)
+- [firebase-admin](https://firebase.google.com/docs/auth/admin/verify-id-tokens)
+- [nodemailer](https://javascript.plainenglish.io/send-emails-for-your-node-js-application-using-nodemailer-express-b12584d999af)
+- [multer](https://www.npmjs.com/package/multer)
+- [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)
+- [uuidv4](https://www.npmjs.com/package/uuidv4)
 
 ### Special thank you to project supporters
 

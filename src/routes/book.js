@@ -1,5 +1,6 @@
 const express = require('express');
 const authorize = require('../middleware/authorize');
+const upload = require('../middleware/upload');
 const router = express.Router();
 const {
   createBook,
@@ -66,7 +67,7 @@ const {
  *          200:
  *              description: All books were retrieved
  */
-router.route('/books').post(createBook).get(getAllBook);
+router.route('/books').post(upload.single('image'), createBook).get(getAllBook);
 
 /**
  * @swagger

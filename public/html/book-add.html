@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../css/index.css" />
+  <title>Floating Books UI | Add Book</title>
+</head>
+<body>
+  <nav>
+    <h1>Floating Books API</h1>
+    <a href="../index.html" class="action-btn-cs">Books</a>
+    <a href="book-add.html" class="action-btn-cs">Add Book +</a>
+  </nav>
+  <main>
+    <div id="content-container">
+      <div class="content-card" >
+        <h1 id="book-header">Create a Book</h1>
+        <div class = column-container>
+          <form onsubmit="postBook(event)" id="form" >
+            <table class="rwd-table">
+              <tbody>
+                <tr>
+                  <td> 
+                    <label for="bookTitleField">Title:</label>
+                  </td>
+                  <td> 
+                    <input type="text" id="bookTitleField" name="title" />
+                  </td>
+                </tr>         
+                <tr>
+                    <td> 
+                      <label for="bookISBNField">ISBN:</label>
+                    </td>
+                    <td> 
+                      <input type="text" id="bookISBNField" name="isbn" />
+                    </td>
+                  </tr>            
+                <tr>
+                    <td> 
+                      <label for="bookAuthorField">Author:</label>
+                    </td>
+                    <td> 
+                      <input type="text" id="bookAuthorField" name="author" />
+                    </td>
+                  </tr>      
+                <tr>
+                    <td> 
+                      <label for="bookReleaseDateField">ReleaseDate:</label>
+                    </td>
+                    <td> 
+                      <input type="text" id="bookReleaseDateField" name="releasedate" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookImageField">Image:</label>
+                    </td>
+                    <td> 
+                      <input type="file" id="bookImageField" name="image" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookCommentField">Comment:</label>
+                    </td>
+                    <td> 
+                      <input type="text" id="bookCommentField" name="comment" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookDonateDateField">DonateDate:</label>
+                    </td>
+                    <td> 
+                      <input type="text" id="bookDonateDateField" name="donatedate" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookGenreIdField">GenreId:</label>
+                    </td>
+                    <td> 
+                      <input type="number" id="bookGenreIdField" name="genreid" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookDonatorIdField">DonatorId:</label>
+                    </td>
+                    <td> 
+                      <input type="number" id="bookDonatorIdField" name="donatorid" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <label for="bookOwnerIdField">OwnerId:</label>
+                    </td>
+                    <td> 
+                      <input type="number" id="bookOwnerIdField" name="ownerid" />
+                    </td>
+                  </tr>
+                <tr>
+                  <td></td>
+                  <td> 
+                    <input type="submit" value="Submit" class="action-btn-cs">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </form>
+    </main>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+<script src="../js/books/post-book.js"></script>
+<!-- <script>
+  // immediately invoked function expression - IIFE
+  (async () => {
+
+  })()
+</script> -->
+</html>
