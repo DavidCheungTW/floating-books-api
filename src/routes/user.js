@@ -8,6 +8,7 @@ const {
   getUser,
   patchUser,
   deleteUser,
+  login
 } = require('../controllers/user');
 
 /**
@@ -29,12 +30,15 @@ const {
  *                - firstName
  *                - lastName
  *                - userName
+ *                - password
  *              properties:
  *                  firstName:
  *                      type: string
  *                  lastName:
  *                      type: string
  *                  userName:
+ *                      type: string
+ *                  password:
  *                      type: string
  *                  emailVerified:
  *                      type: boolean
@@ -55,6 +59,35 @@ router.route('/users').post(createUser).get(getAllUser);
 
 /**
  * @swagger
+ * /users/login:
+ *  post:
+ *      tags:
+ *          - users
+ *      description: login user
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *        - in: body
+ *          name: user
+ *          description: the user to login
+ *          schema:
+ *              type: object
+ *              required:
+ *                - userName
+ *                - password
+ *              properties:
+ *                  userName:
+ *                      type: string
+ *                  password:
+ *                      type: string
+ *      responses:
+ *          200:
+ *              description: User records are retrieved
+ */
+router.route('/users/login').post(login);
+
+/**
+ * @swagger
  * /users/search:
  *  post:
  *      tags:
@@ -72,6 +105,7 @@ router.route('/users').post(createUser).get(getAllUser);
  *                - firstName
  *                - lastName
  *                - userName
+ *                - password
  *                - postalAddress
  *              properties:
  *                  firstName:
@@ -79,6 +113,8 @@ router.route('/users').post(createUser).get(getAllUser);
  *                  lastName:
  *                      type: string
  *                  userName:
+ *                      type: string
+ *                  password:
  *                      type: string
  *                  postalAddress:
  *                      type: string
@@ -129,6 +165,7 @@ router.route('/users/search').post(searchUser);
  *                - firstName
  *                - lastName
  *                - userName
+ *                - password
  *                - postalAddress
  *              properties:
  *                  firstName:
@@ -136,6 +173,8 @@ router.route('/users/search').post(searchUser);
  *                  lastName:
  *                      type: string
  *                  userName:
+ *                      type: string
+ *                  password:
  *                      type: string
  *                  emailVerified:
  *                      type: boolean

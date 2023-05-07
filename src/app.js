@@ -3,6 +3,7 @@ const app = express();
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const path = require('path');
+var cors = require("cors")
 
 // ------ Configure firebase admin ------
 const admin = require('firebase-admin');
@@ -40,6 +41,13 @@ const favouriteRouter = require('../src/routes/favourite');
 const orderRouter = require('../src/routes/order');
 const emailRouter = require('../src/routes/email');
 
+const corsOpts = {
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOpts));
 app.use(genreRouter);
 app.use(userRouter);
 app.use(bookRouter);

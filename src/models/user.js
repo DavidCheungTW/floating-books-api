@@ -46,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    password: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
     emailVerified: DataTypes.BOOLEAN,
     postalAddress: DataTypes.STRING,
   };

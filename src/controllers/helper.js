@@ -18,6 +18,24 @@ exports.createItem = async (model, req, res) => {
   }
 };
 
+exports.login = async (model, req, res) => {
+  const { userName, password } = req.body;
+  try {
+    const user = await model.findOne({ where: { userName } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 exports.getAllItem = async (model, req, res) => {
   let rows;
   try {
