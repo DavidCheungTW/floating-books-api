@@ -30,7 +30,7 @@ exports.getAllItem = async (model, req, res) => {
       case 'Favourite':
       case 'Order':
         rows = await model.findAll({
-          include: ['user', 'book'],
+          include: { all: true, nested: true },
         });
         break;
       default:
@@ -49,6 +49,7 @@ exports.searchItem = async (model, req, res) => {
       case 'Book':
         rows = await model.findAll({
           where: req.body,
+          // order: [['title', 'DESC']],
           include: ['genre', 'donator', 'owner'],
         });
         break;
@@ -56,7 +57,7 @@ exports.searchItem = async (model, req, res) => {
       case 'Order':
         rows = await model.findAll({
           where: req.body,
-          include: ['user', 'book'],
+          include: { all: true, nested: true },
         });
         break;
       default:
@@ -81,7 +82,7 @@ exports.getItem = async (model, req, res) => {
       case 'Favourite':
       case 'Order':
         row = await model.findByPk(req.params.id, {
-          include: ['user', 'book'],
+          include: { all: true, nested: true },
         });
         break;
       default:

@@ -46,8 +46,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    emailVerified: DataTypes.BOOLEAN,
     postalAddress: DataTypes.STRING,
+    verifyCode: DataTypes.STRING,
+    emailVerified: DataTypes.BOOLEAN,
   };
 
   return sequelize.define('User', schema);
