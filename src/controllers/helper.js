@@ -1,4 +1,6 @@
 const uploadFile = require('../utils/upload-file');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.createItem = async (model, req, res) => {
   try {
@@ -19,11 +21,20 @@ exports.createItem = async (model, req, res) => {
 };
 
 exports.getAllItem = async (model, req, res) => {
+  const { query } = req;
+  const newQuery = query?.query
+    ? {
+        title: {
+          [Op.iLike]: '%' + JSON.parse(query?.query).title + '%',
+        },
+      }
+    : {};
   let rows;
   try {
     switch (model.name) {
       case 'Book':
         rows = await model.findAll({
+          where: newQuery,
           include: ['genre', 'donator', 'owner'],
         });
         break;
@@ -49,7 +60,6 @@ exports.searchItem = async (model, req, res) => {
       case 'Book':
         rows = await model.findAll({
           where: req.body,
-          // order: [['title', 'DESC']],
           include: ['genre', 'donator', 'owner'],
         });
         break;
