@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: floating-books-api
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm ci
+    startCommand: node index.js
+    envVars:
+      - key: PGDATABASE
+        fromDatabase:
+          name: music-library-database-dav-oct22
+          property: database
+      - key: PGUSER
+        fromDatabase:
+          name: music-library-database-dav-oct22
+          property: user
+      - key: PGPASSWORD
+        fromDatabase:
+          name: music-library-database-dav-oct22
+          property: password
+      - key: PGHOST
+        fromDatabase:
+          name: music-library-database-dav-oct22
+          property: host
+      - key: PGPORT
+        fromDatabase:
+          name: music-library-database-dav-oct22
+          property: port
+
+databases:
+  - name: music-library-database-dav-oct22
+    plan: free
+    region: frankfurt
+    databaseName: floating_books_api_dev
+    ipAllowList: []
