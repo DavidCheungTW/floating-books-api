@@ -30,7 +30,7 @@ const swaggerSpecs = swaggerJsdoc(options);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 app.use(express.json());
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.get('/', (_, res) => {
   res.status(200).json({ result: 'Welcome to Floating Books API!' });
