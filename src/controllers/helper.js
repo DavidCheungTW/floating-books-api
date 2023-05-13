@@ -21,7 +21,7 @@ exports.createItem = async (model, req, res) => {
 };
 
 exports.getAllItem = async (model, req, res) => {
-  const { query } = req;
+  const { query, sort } = req;
   const newQuery = query?.query
     ? {
         title: {
@@ -29,12 +29,23 @@ exports.getAllItem = async (model, req, res) => {
         },
       }
     : {};
+
+  if (query?.sort) {
+    const newObj = JSON.parse(query?.sort);
+    const key = Object.keys(newObj)[0];
+    const value = Object.values(newObj)[0];
+    newSort = [[key, value === 1 ? 'ASC' : 'DESC']];
+  } else {
+    newSort = [];
+  }
+
   let rows;
   try {
     switch (model.name) {
       case 'Book':
         rows = await model.findAll({
           where: newQuery,
+          order: newSort,
           include: ['genre', 'donator', 'owner'],
         });
         break;
