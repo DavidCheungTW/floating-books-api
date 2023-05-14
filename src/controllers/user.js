@@ -6,8 +6,10 @@ const {
   getItem,
   patchItem,
   deleteItem,
+  getUserByUsername,
 } = require('../controllers/helper');
 
+exports.getUserByUsername = (req, res) => getUserByUsername(User, req, res);
 exports.createUser = (req, res) => createItem(User, req, res);
 exports.getAllUser = (req, res) => getAllItem(User, req, res);
 exports.searchUser = (req, res) => searchItem(User, req, res);

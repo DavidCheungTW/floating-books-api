@@ -5,7 +5,7 @@ const {
   searchItem,
   getItem,
   patchItem,
-  deleteItem,
+  deleteItem
 } = require('../controllers/helper');
 
 exports.createBook = (req, res) => createItem(Book, req, res);

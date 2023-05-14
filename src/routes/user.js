@@ -8,6 +8,7 @@ const {
   getUser,
   patchUser,
   deleteUser,
+  getUserByUsername
 } = require('../controllers/user');
 
 /**
@@ -52,6 +53,32 @@ const {
  *              description: All users were retrieved
  */
 router.route('/users').post(createUser).get(getAllUser);
+
+/**
+ * @swagger
+ * /users/get-user-by-username:
+ *  post:
+ *      tags:
+ *          - users
+ *      description: get user by username
+ *      consumes:
+ *          - application/json
+ *      parameters:
+ *        - in: body
+ *          name: user
+ *          description: get user by username
+ *          schema:
+ *              type: object
+ *              required:
+ *                - userName
+ *              properties:
+ *                  userName:
+ *                      type: string
+ *      responses:
+ *          200:
+ *              description: User records are retrieved
+ */
+router.route('/users/get-user-by-username').post(getUserByUsername);
 
 /**
  * @swagger

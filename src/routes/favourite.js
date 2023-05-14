@@ -8,6 +8,7 @@ const {
   getFavourite,
   patchFavourite,
   deleteFavourite,
+  getUserFavourites
 } = require('../controllers/favourite');
 
 /**
@@ -80,6 +81,30 @@ router.route('/favourites').post(createFavourite).get(getAllFavourite);
  *              description: Favourite records are retrieved
  */
 router.route('/favourites/search').post(searchFavourite);
+
+
+
+/**
+ * @swagger
+ * /favourites/{userId}:
+ *  get:
+ *      tags:
+ *          - favourites
+ *      description: Retrieves all users favourite books
+ *      parameters:
+ *        - in: path
+ *          name: userId
+ *          schema:
+ *              type: number
+ *          required: true
+ *          description: userId
+ *      responses:
+ *          200:
+ *              description: User favourites retrieved
+ *          404:
+ *              description: User favourites not found
+ */
+router.route('/favourites/:id').get(getUserFavourites);
 
 /**
  * @swagger

@@ -1,4 +1,6 @@
 const uploadFile = require('../utils/upload-file');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.createItem = async (model, req, res) => {
   try {
@@ -18,12 +20,65 @@ exports.createItem = async (model, req, res) => {
   }
 };
 
+exports.getUserByUsername = async (model, req, res) => {
+  const { userName } = req.body;
+  try {
+    const user = await model.findOne({ where: { userName } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
+exports.getUserFavourites = async (model, req, res) => {
+  const  userId = req.params.id;
+  try {
+    const uniqueBooks = await model.findAll({
+      where: { userId },
+      include: ['book']
+    });
+
+    if (!uniqueBooks) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(uniqueBooks);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 exports.getAllItem = async (model, req, res) => {
+  const { query, sort } = req;
+  const newQuery = query?.query
+    ? {
+        title: {
+          [Op.iLike]: '%' + JSON.parse(query?.query).title + '%',
+        },
+      }
+    : {};
+
+  if (query?.sort) {
+    const newObj = JSON.parse(query?.sort);
+    const key = Object.keys(newObj)[0];
+    const value = Object.values(newObj)[0];
+    newSort = [[key, value === 1 ? 'ASC' : 'DESC']];
+  } else {
+    newSort = [];
+  }
+
   let rows;
   try {
     switch (model.name) {
       case 'Book':
         rows = await model.findAll({
+          where: newQuery,
+          order: newSort,
           include: ['genre', 'donator', 'owner'],
         });
         break;
@@ -49,7 +104,6 @@ exports.searchItem = async (model, req, res) => {
       case 'Book':
         rows = await model.findAll({
           where: req.body,
-          // order: [['title', 'DESC']],
           include: ['genre', 'donator', 'owner'],
         });
         break;
