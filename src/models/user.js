@@ -47,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     postalAddress: DataTypes.STRING,
+    email: DataTypes.STRING,
   };
 
   return sequelize.define('User', schema);
