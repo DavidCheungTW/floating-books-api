@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    isbn: {
+    ISBN: {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
