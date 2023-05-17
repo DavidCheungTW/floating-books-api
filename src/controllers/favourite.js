@@ -6,8 +6,10 @@ const {
   getItem,
   patchItem,
   deleteItem,
+  getUserFavourites,
 } = require('../controllers/helper');
 
+exports.getUserFavourites = (req, res) =>getUserFavourites(Favourite, req, res);
 exports.createFavourite = (req, res) => createItem(Favourite, req, res);
 exports.getAllFavourite = (req, res) => getAllItem(Favourite, req, res);
 exports.searchFavourite = (req, res) => searchItem(Favourite, req, res);

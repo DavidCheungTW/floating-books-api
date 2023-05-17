@@ -120,6 +120,24 @@ exports.getItem = async (model, req, res) => {
   }
 };
 
+exports.getUserFavourites = async (model, req, res) => {
+  const userId = req.params.id;
+  try {
+    const uniqueBooks = await model.findAll({
+      where: { userId },
+      include: ['book'],
+    });
+
+    if (!uniqueBooks) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(uniqueBooks);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 exports.patchItem = async (model, req, res) => {
   let row;
   try {
