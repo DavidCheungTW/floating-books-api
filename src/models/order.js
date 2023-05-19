@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'request',
     },
+    replyDate: { type: DataTypes.DATEONLY, defaultValue: '1900-01-01' },
     postDate: { type: DataTypes.DATEONLY, defaultValue: '1900-01-01' },
     compDate: { type: DataTypes.DATEONLY, defaultValue: '1900-01-01' },
     rating: { type: DataTypes.INTEGER, defaultValue: 0 },
