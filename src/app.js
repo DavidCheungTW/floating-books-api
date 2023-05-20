@@ -5,7 +5,14 @@ const swaggerUi = require('swagger-ui-express');
 const path = require('path');
 const cors = require('cors');
 
-app.use(cors()); // Use this after the variable declaration
+// app.use(cors()); // Use this after the variable declaration
+const corsOpts = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOpts));
 
 // ------ Configure firebase admin ------
 const admin = require('firebase-admin');
