@@ -67,7 +67,10 @@ const {
  *          200:
  *              description: All books were retrieved
  */
-router.route('/books').post(upload.single('image'), createBook).get(getAllBook);
+router
+  .route('/books')
+  .post(upload.single('image'), authorize, createBook)
+  .get(getAllBook);
 
 /**
  * @swagger

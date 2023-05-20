@@ -47,7 +47,7 @@ const {
  *          200:
  *              description: All orders were retrieved
  */
-router.route('/orders').post(createOrder).get(getAllOrder);
+router.route('/orders').post(authorize, createOrder).get(getAllOrder);
 
 /**
  * @swagger
